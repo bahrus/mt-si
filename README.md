@@ -17,7 +17,7 @@ Provides a "mounted signal" that can be used by other peer components to decide 
 
 By default, the mt-si adorning the script element will monitor for all mt-si attributes and apply.
 
-Howevever, will check if -obs is present, and if so, apply selectively:
+However, will check if -obs is present, and if so, apply selectively:
 
 ```html
 <script id=my-mt-observer mt-si type=application/json>
