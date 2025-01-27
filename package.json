@@ -1,10 +1,49 @@
 {
   "name": "mt-si",
   "version": "0.0.0",
-  "description": "Activate and deactive functionality based on environmental conditions in the browser",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements",
+    "enhancement",
+    "behavior"
+  ],
+  "description": "Activate and deactivate functionality based on environmental conditions in the browser",
   "main": "mt-si.js",
+  "module": "mt-si.js",
+  "exports":{
+    ".": {
+      "import": "./mt-si.js"
+    },
+    "./mt-si.js": {
+      "import": "./mt-si.js"
+    },
+    "./emc.js": {
+      "import": "./emc.js"
+    }
+  },
+  "files": [
+    "*.js",
+    "./ts-refs/mt-si/types.d.ts",
+    "README.md"
+  ],
+  "types": "./ts-refs/mt-si/types.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "serve": "python3 ./node_modules/ssi-server/ssi_server.py",
+    "safari": "npx playwright wk http://localhost:3030",
+    "update": "ncu -u && npm install"
+  },
+  "dependencies": {
+    "be-enhanced": "0.0.165",
+    "be-hive": "0.0.245",
+    "mount-observer": "0.0.41",
+    "trans-render": "0.0.880"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.50.0",
+    "ssi-server": "0.0.1"
   },
   "repository": {
     "type": "git",
