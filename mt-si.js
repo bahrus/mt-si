@@ -22,7 +22,9 @@ class MtSi extends BE {
         },
         positractions: [resolved, rejected],
         actions:{
-
+            hydrate:{
+                ifKeyIn: ['doEval']
+            }
         }
     };
 
@@ -32,6 +34,7 @@ class MtSi extends BE {
      * @returns 
      */
     async hydrate(self){
+        console.log({self});
         return /** @type {PAP} */({
             resolved: true,
         });
