@@ -7,6 +7,7 @@ import { BeHive, seed, MountObserver } from 'be-hive/be-hive.js';
  */
 export const emc = {
     base: 'mt-si',
+    enhancedElementMatches: 'script[type="application/json"]',
     map: {
         
     },
