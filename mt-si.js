@@ -101,7 +101,6 @@ class MtSi extends BE {
                 nudge(mountedElement, name);
             }
         }
-        console.log({e})
     }
     
 
