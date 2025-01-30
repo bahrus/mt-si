@@ -76,6 +76,7 @@ class MtSi extends BE {
         const idSel = enhancedElement.id ? `,[${base}-obs="${enhancedElement.id}"]${not}` : '';
         const mo = new MountObserver({
             on: `${on}${idSel}`,
+            ...value,
         });
         this.#mountObserver = mo;
         mo.addEventListener('mount', this);
