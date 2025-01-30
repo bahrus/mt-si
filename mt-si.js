@@ -20,6 +20,7 @@ class MtSi extends BE {
         },
         propInfo: {
             ...propInfo,
+            enhKey: {},
         },
         positractions: [resolved, rejected],
         actions:{
@@ -35,7 +36,7 @@ class MtSi extends BE {
      * @returns 
      */
     async hydrate(self){
-        const {doEval, enhancedElement} = self;
+        const {doEval, enhancedElement, enhKey} = self;
         if(doEval){
             throw 'NI';
         }
@@ -45,11 +46,16 @@ class MtSi extends BE {
          */
         const beParsed = await /** @type{any} */(enhancedElement).beEnhanced.whenResolved(emc);
         const {value} = beParsed;
+        const not = `:not(script[type="application/json"])`;
+        const on = `[${enhKey}]${not}`;
+        const idSel = enhancedElement.id ? `[${enhKey}-obs="${enhancedElement.id}"]${not}` : '';
         console.log({value});
         return /** @type {PAP} */({
             resolved: true,
         });
     }
+
+    
 
     de = de;
 }
