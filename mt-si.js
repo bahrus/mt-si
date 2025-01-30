@@ -2,6 +2,7 @@
 import { propInfo, rejected, resolved } from 'be-enhanced/cc.js';
 import { BE } from 'be-enhanced/BE.js';
 import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
+import { MountObserver } from 'mount-observer/MountObserver.js';
 /** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types.d.ts' */
 /** @import {Actions, PAP, AllProps, AP, BAP} from './ts-refs/mt-si/types' */
 /** @import {AllProps as beParsedAllProps} from './ts-refs/be-parsed/types' */
@@ -33,6 +34,11 @@ class MtSi extends BE {
     };
 
     /**
+     * @type {MountObserver | undefined}
+     */
+    #mountObserver;
+
+    /**
      * 
      * @param {BAP} self 
      * @returns 
@@ -51,7 +57,12 @@ class MtSi extends BE {
         const not = `:not(script[type="application/json"])`;
         const on = `[${enhKey}]${not}`;
         const idSel = enhancedElement.id ? `[${enhKey}-obs="${enhancedElement.id}"]${not}` : '';
-        console.log({value});
+        const mo = new MountObserver({
+            on: `${on},${idSel}`,
+        });
+        this.#mountObserver = mo;
+        mo.addEventListener('mount', this);
+        //console.log({value});
         return /** @type {PAP} */({
             resolved: true,
         });
@@ -63,6 +74,7 @@ class MtSi extends BE {
      * @param {IMountEvent} e 
      */
     handleEvent(e){
+        console.log({e})
     }
     
 
