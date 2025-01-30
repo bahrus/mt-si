@@ -7,6 +7,7 @@ import { MountObserver } from 'mount-observer/MountObserver.js';
 /** @import {Actions, PAP, AllProps, AP, BAP} from './ts-refs/mt-si/types' */
 /** @import {AllProps as beParsedAllProps} from './ts-refs/be-parsed/types' */
 /** @import {IMountEvent} from './ts-refs/mount-observer/types.d.ts'*/
+/** @import {EnhancementInfo} from './ts-refs/trans-render/be/types' */
 
 /**
  * @implements {Actions}
@@ -23,7 +24,6 @@ class MtSi extends BE {
         },
         propInfo: {
             ...propInfo,
-            enhKey: {},
         },
         positractions: [resolved, rejected],
         actions:{
@@ -34,9 +34,24 @@ class MtSi extends BE {
     };
 
     /**
-     * @type {MountObserver | undefined}
+     * @type {MountObserver}
      */
     #mountObserver;
+    /**
+     * @type {EnhancementInfo}
+     */
+    #ei;
+
+    /**
+     * 
+     * @param {Element} mountElement 
+     * @param {EnhancementInfo} enhancementInfo 
+     */
+    async attach(mountElement, enhancementInfo){
+        this.#ei = enhancementInfo;
+        await super.attach(mountElement, enhancementInfo);
+        
+    }
 
     /**
      * 
@@ -44,7 +59,7 @@ class MtSi extends BE {
      * @returns 
      */
     async hydrate(self){
-        const {doEval, enhancedElement, enhKey} = self;
+        const {doEval, enhancedElement} = self;
         if(doEval){
             throw 'NI';
         }
@@ -55,13 +70,17 @@ class MtSi extends BE {
         const beParsed = await /** @type{any} */(enhancedElement).beEnhanced.whenResolved(emc);
         const {value} = beParsed;
         const not = `:not(script[type="application/json"])`;
-        const on = `[${enhKey}]${not}`;
-        const idSel = enhancedElement.id ? `[${enhKey}-obs="${enhancedElement.id}"]${not}` : '';
+        console.log({ei: this.#ei});
+        const {mountCnfg} = this.#ei;
+        const {base} = mountCnfg;
+        const on = `[${base}]${not}`;
+        const idSel = enhancedElement.id ? `[${base}-obs="${enhancedElement.id}"]${not}` : '';
         const mo = new MountObserver({
             on: `${on},${idSel}`,
         });
         this.#mountObserver = mo;
         mo.addEventListener('mount', this);
+        mo.observe(enhancedElement.getRootNode());
         //console.log({value});
         return /** @type {PAP} */({
             resolved: true,

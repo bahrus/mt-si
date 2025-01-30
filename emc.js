@@ -4,7 +4,7 @@ import { BeHive, seed, MountObserver } from 'be-hive/be-hive.js';
 /** @import {Actions, PAP,  AP} from './ts-refs/mt-si/types' */;
 
 /**
- * @type {EMC<any, AP}
+ * @type {EMC<any, AP>}
  */
 export const emc = {
     base: 'mt-si',
@@ -20,7 +20,8 @@ export const emc = {
         (await import('./mt-si.js'));
         return MtSi;
     },
-    mapEnhKeyTo: 'enhKey'
+    
+
 };
 const mose = seed(emc);
 MountObserver.synthesize(document, BeHive, mose);
