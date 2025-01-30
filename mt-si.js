@@ -70,7 +70,6 @@ class MtSi extends BE {
         const beParsed = await /** @type{any} */(enhancedElement).beEnhanced.whenResolved(emc);
         const {value} = beParsed;
         const not = `:not(script[type="application/json"])`;
-        console.log({ei: this.#ei});
         const {mountCnfg} = this.#ei;
         const {base} = mountCnfg;
         const on = `[${base}]${not}`;
@@ -81,7 +80,6 @@ class MtSi extends BE {
         this.#mountObserver = mo;
         mo.addEventListener('mount', this);
         mo.observe(enhancedElement.getRootNode());
-        //console.log({value});
         return /** @type {PAP} */({
             resolved: true,
         });
@@ -92,7 +90,17 @@ class MtSi extends BE {
      * 
      * @param {IMountEvent} e 
      */
-    handleEvent(e){
+    async handleEvent(e){
+        const {nudge} = await import('trans-render/lib/nudge.js');
+        const {mountedElement} = e;
+        const attrs = mountedElement.attributes;
+        for(let i = 0; i < attrs.length; i++){
+            const attr = attrs[i];
+            const {name, value} = attr;
+            if(name.startsWith('defer-')){
+                nudge(mountedElement, name);
+            }
+        }
         console.log({e})
     }
     
