@@ -3,11 +3,13 @@ import { propInfo, rejected, resolved } from 'be-enhanced/cc.js';
 import { BE } from 'be-enhanced/BE.js';
 import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
 /** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types.d.ts' */
-/** @import {Actions, PAP, AllProps, AP, BAP} from './ts-refs/mt-si/types' */;
+/** @import {Actions, PAP, AllProps, AP, BAP} from './ts-refs/mt-si/types' */
 /** @import {AllProps as beParsedAllProps} from './ts-refs/be-parsed/types' */
+/** @import {IMountEvent} from './ts-refs/mount-observer/types.d.ts'*/
 
 /**
  * @implements {Actions}
+ * @implements {EventListenerObject}
  * 
  */
 class MtSi extends BE {
@@ -55,6 +57,13 @@ class MtSi extends BE {
         });
     }
 
+
+    /**
+     * 
+     * @param {IMountEvent} e 
+     */
+    handleEvent(e){
+    }
     
 
     de = de;
