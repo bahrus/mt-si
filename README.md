@@ -1,4 +1,4 @@
-# mt-si [TODO]
+# mt-si [WIP]
 
 Provides a "mounted signal" that can be used by other peer components to decide whether to "go to sleep" or remain active.
 
