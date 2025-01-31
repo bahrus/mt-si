@@ -39,7 +39,7 @@
     "be-enhanced": "0.0.165",
     "be-hive": "0.0.245",
     "be-parsed": "0.0.7",
-    "mount-observer": "0.0.41",
+    "mount-observer": "0.0.42",
     "trans-render": "0.0.880"
   },
   "devDependencies": {
