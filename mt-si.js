@@ -80,7 +80,7 @@ class MtSi extends BE {
         });
         this.#mountObserver = mo;
         mo.addEventListener('mount', this);
-        mo.observe(enhancedElement.getRootNode());
+        mo.observe(enhancedElement.getRootNode(), {leaveBreadcrumb: true});
         return /** @type {PAP} */({
             resolved: true,
         });
