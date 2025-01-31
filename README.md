@@ -11,7 +11,7 @@ Provides a "mounted signal" that can be used by other peer components to decide 
 
 ...
 <template mt-si defer-be-switched be-switched="...">
-    <my-heavy-lifting-component mt-si></my-heavy-lifting-component>
+    <my-heavy-lifting-component defer-hydration mt-si></my-heavy-lifting-component>
 </template>
 ```
 
